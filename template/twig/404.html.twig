@@ -1,0 +1,11 @@
+{% extends get_template('base', _self) %}
+
+{% block body %}
+    <div class="container py-10 py-md-20 py-lg-30 py-xl-40">
+        <div class="row justify-content-center flex-column">
+            <div class="col-12 col-lg-10 col-xl-8 m-auto text-center">
+                {{ pmpr_do_action('render_404') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

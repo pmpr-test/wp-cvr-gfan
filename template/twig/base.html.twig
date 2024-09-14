@@ -1,0 +1,12 @@
+{% block header %}
+    {{ pmpr_do_action('render_header') }}
+{% endblock %}
+
+<main class="main d-block">
+    {% block body %}{% endblock %}
+</main>
+
+{% block footer %}
+    {{ pmpr_do_action('render_footer') }}
+{% endblock %}
+

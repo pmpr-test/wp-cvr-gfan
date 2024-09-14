@@ -1,0 +1,117 @@
+{% set contact_page = get_cover_option('contact_page', {}) %}
+<section class="form pb-15">
+    <div class="container">
+        <div class="row">
+            <div class="order-lg-0 col-12 col-lg-6 mb-8 mb-lg-0">
+                <div class="mr-0 mr-lg-10">
+                    <div class="text-justify text-normal fs-8x">{{ content|raw }}</div>
+                    {% if contact_page.hour %}
+                        <div class="row my-6">
+                            {% for hour in contact_page.hour %}
+                                <div class="col-6">
+                                    <div class="d-flex justify-content-center">
+                                        {% include get_template('../../common/information', _self) with {
+                                            info: hour,
+                                            is_phone: 0
+                                        } %}
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    {% if contact_page.social %}
+                        {{ render_if_has_content('h2', {class: 'h4 my-5 text-center'}, contact_page.social_title) }}
+                        <div class="d-flex justify-content-center">
+                            {% include get_template('../../common/social', _self) with {
+                                socials: contact_page.social,
+                                icon_size: 'xl',
+                            } %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="order-2 col-12 col-lg-6">
+                {{ form|raw }}
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <hr class="border-primary-light">
+</div>
+
+<section class="py-8">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-6 mb-10 mb-lg-0">
+                {% if contact_page.middle_image %}
+                    {{ wp_get_attachment_image(contact_page.middle_image, 'medium_large', {class: 'mx-auto'})|raw }}
+                {% endif %}
+            </div>
+            <div class="col-12 col-lg-4">
+                <div class="information row">
+                    {% set flex_class = 'd-flex justify-content-center' %}
+                    {% set columns_class = 'col-12' %}
+                    <div class="{{ columns_class|esc_attr }} mb-8">
+                        {% if contact_page.location %}
+                            <div class="{{ flex_class|esc_attr }}{% if not loop.last %} mb-5{% endif %}">
+                                {% for location in contact_page.location %}
+                                    {% include get_template('../../common/information', _self) with {
+                                        info: location,
+                                        is_phone: 0,
+                                        font_size: 'xl'
+                                    } %}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+                    <div class="{{ columns_class|esc_attr }} mb-8">
+                        {% if contact_page.email %}
+                            {% for email in contact_page.email %}
+                                <div class="{{ flex_class|esc_attr }}{% if not loop.last %} mb-5{% endif %}">
+                                    {% include get_template('../../common/information', _self) with {
+                                        info: email,
+                                        is_phone: 0,
+                                        font_size: 'xl'
+                                    } %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="{{ columns_class|esc_attr }} mb-8">
+                        {% if contact_page.phone %}
+                            {% for phone in contact_page.phone %}
+                                <div class="{{ flex_class|esc_attr }}{% if not loop.last %} mb-5{% endif %}">
+                                    {% include get_template('../../common/information', _self) with {
+                                        info: phone,
+                                        is_phone: 1,
+                                        font_size: 'xl'
+                                    } %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                    <div class="{{ columns_class|esc_attr }}">
+                        {% if contact_page.whatsapp %}
+                            {% for whatsapp in contact_page.whatsapp %}
+                                <div class="{{ flex_class|esc_attr }}{% if not loop.last %} mb-5{% endif %}">
+                                    {% include get_template('../../common/whatsapp', _self) with {
+                                        text: whatsapp.title,
+                                        phone: whatsapp,
+                                        font_size: 'xl'
+                                    } %}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map my-15">
+    {{ map|raw }}
+</section>
+
