@@ -1,7 +1,7 @@
 <?php
 /*   _______________________________________
     |  Obfuscated by PMPR - Php Obfuscator  |
-    |             670d46a3939ac             |
+    |             670d4a8d36f94             |
     |_______________________________________|
 */
  namespace Pmpr\Cover\Gfan\Component; use Pmpr\Cover\Gfan\Component\Module\Contact; use Pmpr\Cover\Gfan\Container; class Component extends Container { public function mameiwsayuyquoeq() { Contact::symcgieuakksimmu(); } }
